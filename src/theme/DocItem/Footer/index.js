@@ -50,6 +50,12 @@ function EditMetaRow({
   );
 }
 export default function DocItemFooter() {
+  const [feedbackSubmitted, setFeedbackSubmitted] = React.useState(false);
+
+  const handleFeedbackSuccess = React.useCallback(() => {
+    setFeedbackSubmitted(true);
+  }, []);
+
   const { metadata } = useDoc();
   const {
     editUrl,
@@ -65,25 +71,39 @@ export default function DocItemFooter() {
     return null;
   }
 
-  console.log(metadata);
-
   return (
     <footer
       className={clsx(ThemeClassNames.docs.docFooter, "docusaurus-mt-lg")}
     >
       <DoclabsProvider
-        siteId=""
+        siteId="01h4ksgbzzawstvysgpbdkqbn6"
         identifier={{
           lvl1: metadata.id,
           lvl2: "docs",
         }}
       >
         <div className={styles.doclabs}>
-          <div className={styles.doclabsLabel}>Was this helpful?</div>
-          <div className={styles.doclabsButtons}>
-            <LikeButton className={styles.doclabsButton}>😊</LikeButton>
-            <DislikeButton className={styles.doclabsButton}>😔</DislikeButton>
-          </div>
+          {feedbackSubmitted ? (
+            <div className={styles.doclabsLabel}>Thanks for the feedback!</div>
+          ) : (
+            <>
+              <div className={styles.doclabsLabel}>Was this helpful?</div>
+              <div className={styles.doclabsButtons}>
+                <LikeButton
+                  onSuccess={handleFeedbackSuccess}
+                  className={styles.doclabsButton}
+                >
+                  😊
+                </LikeButton>
+                <DislikeButton
+                  onSuccess={handleFeedbackSuccess}
+                  className={styles.doclabsButton}
+                >
+                  😔
+                </DislikeButton>
+              </div>
+            </>
+          )}
         </div>
       </DoclabsProvider>
       {canDisplayTagsRow && <TagsRow tags={tags} />}
