@@ -6,6 +6,13 @@ import LastUpdated from "@theme/LastUpdated";
 import EditThisPage from "@theme/EditThisPage";
 import TagsListInline from "@theme/TagsListInline";
 import styles from "./styles.module.css";
+
+import {
+  Provider as DoclabsProvider,
+  LikeButton,
+  DislikeButton,
+} from "@doclabs/react";
+
 function TagsRow(props) {
   return (
     <div
@@ -64,7 +71,16 @@ export default function DocItemFooter() {
     <footer
       className={clsx(ThemeClassNames.docs.docFooter, "docusaurus-mt-lg")}
     >
-      HELLO!
+      <DoclabsProvider
+        siteId=""
+        identifier={{
+          lvl1: metadata.id,
+          lvl2: "docs",
+        }}
+      >
+        <LikeButton>Like</LikeButton>
+        <DislikeButton>Dislike</DislikeButton>
+      </DoclabsProvider>
       {canDisplayTagsRow && <TagsRow tags={tags} />}
       {canDisplayEditMetaRow && (
         <EditMetaRow
