@@ -78,8 +78,13 @@ export default function DocItemFooter() {
           lvl2: "docs",
         }}
       >
-        <LikeButton>Like</LikeButton>
-        <DislikeButton>Dislike</DislikeButton>
+        <div className={styles.doclabs}>
+          <div className={styles.doclabsLabel}>Was this helpful?</div>
+          <div className={styles.doclabsButtons}>
+            <LikeButton className={styles.doclabsButton}>😊</LikeButton>
+            <DislikeButton className={styles.doclabsButton}>😔</DislikeButton>
+          </div>
+        </div>
       </DoclabsProvider>
       {canDisplayTagsRow && <TagsRow tags={tags} />}
       {canDisplayEditMetaRow && (

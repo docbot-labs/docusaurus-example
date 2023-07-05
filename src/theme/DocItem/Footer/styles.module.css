@@ -9,3 +9,32 @@
     text-align: right;
   }
 }
+
+.doclabs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.doclabsLabel {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.doclabsButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.doclabsButton {
+  border: 0;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
